@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>product_categoryApi</name>
+    </assembly>
+    <members>
+        <member name="M:product_categoryApi.Controllers.UserController.Login(product_categoryApi.Models.VM.LoginVMInput)">
+            <summary>
+             This service authenticates a registered and active user
+             </summary>
+             <param name="loginVM">Login View Model </param>
+             <returns>Returns OK status, user data and token in case of success</returns> 
+        </member>
+        <member name="M:product_categoryApi.Controllers.UserController.Register(product_categoryApi.Models.VM.RegisterVMInput)">
+            <summary>
+            This service creates a user
+            </summary>
+            <param name="registerVMInput">Register View Model</param>
+            <returns>Returns status code of 201 and created user</returns>
+        </member>
+    </members>
+</doc>
