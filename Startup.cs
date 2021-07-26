@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,7 +7,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using product_categoryApi.Configurations;
+using product_categoryApi.Infraestructure.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -37,21 +41,64 @@ namespace product_categoryApi
                     options.SuppressModelStateInvalidFilter = true;
                 });
             //Gets the secret under the appsettings confi file
-            var secret = Encoding.ASCII.GetBytes(Configuration.GetSection("JwtConfigurations:secret").Value);
-            
+            var chave = Configuration.GetSection("JwtConfigurations:Secret").Value;
+            var secret = Encoding.ASCII.GetBytes(chave);
+
             //Register the authentication midleware
             services.AddAuthentication(auth =>
             {
-
+                auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(bearer =>
+            {
+                bearer.RequireHttpsMetadata = false;
+                bearer.SaveToken = true;
+                bearer.TokenValidationParameters = new TokenValidationParameters
+                {
+                    //Disable https
+                    ValidateIssuerSigningKey = true,
+                    
+                    //Use symetrickey
+                    IssuerSigningKey = new SymmetricSecurityKey(secret),
+                    //Use local jwt
+                    ValidateIssuer = false,
+                    ValidateAudience=false
+                };
             });
+
             services.AddSwaggerGen(c =>
             {
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer schema (Example: 12345abcdf)",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+
+                });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme{
+
+                            Reference=new OpenApiReference{
+                            Type=ReferenceType.SecurityScheme,
+                            Id="Bearer"
+                            }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "product_categoryApi", Version = "v1" });
                 string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+               
                 c.IncludeXmlComments(xmlPath);
                 
             });
+
+            services.AddDbContext<ApplicationDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,6 +120,7 @@ namespace product_categoryApi
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

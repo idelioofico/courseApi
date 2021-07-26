@@ -4,6 +4,19 @@
         <name>product_categoryApi</name>
     </assembly>
     <members>
+        <member name="M:product_categoryApi.Controllers.CourseController.Get">
+            <summary>
+            This service gets all courses
+            </summary>
+            <returns>Returns status code of 200 and Courses list</returns>
+        </member>
+        <member name="M:product_categoryApi.Controllers.CourseController.Post(product_categoryApi.Models.Course)">
+            <summary>
+            This service creates a new Course
+            </summary>
+            <param name="course">Course Model</param>
+            <returns>Returns status code of 201 and the created course</returns>
+        </member>
         <member name="M:product_categoryApi.Controllers.UserController.Login(product_categoryApi.Models.VM.LoginVMInput)">
             <summary>
              This service authenticates a registered and active user
@@ -15,7 +28,6 @@
             <summary>
             This service creates a user
             </summary>
-            <param name="registerVMInput">Register View Model</param>
             <returns>Returns status code of 201 and created user</returns>
         </member>
     </members>

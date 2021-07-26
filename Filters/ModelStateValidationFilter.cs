@@ -12,9 +12,12 @@ namespace product_categoryApi.Filter
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            //Intercept request and validates the Model data and return Result Object
-            var FieldValidation = new ValidationErrorVMOutput(context.ModelState.SelectMany(errors => errors.Value.Errors).Select(error => error.ErrorMessage));
-            context.Result = new BadRequestObjectResult(FieldValidation);
+            if (!context.ModelState.IsValid)
+            {
+                //Intercept request and validates the Model data and return Result Object
+                var FieldValidation = new ValidationErrorVMOutput(context.ModelState.SelectMany(errors => errors.Value.Errors).Select(error => error.ErrorMessage));
+                context.Result = new BadRequestObjectResult(FieldValidation);
+            }
         }
     }
 }
