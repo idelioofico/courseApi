@@ -3,14 +3,17 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using product_categoryApi.Business.Repositories;
 using product_categoryApi.Configurations;
 using product_categoryApi.Infraestructure.Data;
+using product_categoryApi.Infraestructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -57,12 +60,12 @@ namespace product_categoryApi
                 {
                     //Disable https
                     ValidateIssuerSigningKey = true,
-                    
+
                     //Use symetrickey
                     IssuerSigningKey = new SymmetricSecurityKey(secret),
                     //Use local jwt
                     ValidateIssuer = false,
-                    ValidateAudience=false
+                    ValidateAudience = false
                 };
             });
 
@@ -93,12 +96,19 @@ namespace product_categoryApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "product_categoryApi", Version = "v1" });
                 string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-               
+
                 c.IncludeXmlComments(xmlPath);
-                
+
             });
 
-            services.AddDbContext<ApplicationDbContext>();
+            services.AddDbContext<ApplicationDbContext>(options => {
+
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+
+            });
+
+
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -107,7 +117,7 @@ namespace product_categoryApi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                
+
             }
 
             app.UseSwagger();
@@ -128,7 +138,7 @@ namespace product_categoryApi
                 endpoints.MapControllers();
             });
 
-            
+
         }
     }
 }

@@ -13,13 +13,19 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.EntityFrameworkCore;
 using product_categoryApi.Infraestructure.Data;
 using product_categoryApi.Business.Entities;
+using product_categoryApi.Business.Repositories;
 
 namespace product_categoryApi.Controllers
 {
     [Route("api/v1/user")]
     [ApiController]
     public class UserController : ControllerBase
-    { 
+    {
+        private readonly IUserRepository _userRepository;
+      public UserController(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+        }
 
        ///<summary>
        /// This service authenticates a registered and active user
@@ -81,16 +87,6 @@ namespace product_categoryApi.Controllers
         [ModelStateValidationFilter]
         public IActionResult Register(RegisterVMInput registerVMInput) {
 
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>();
-            options.UseSqlServer("Server=localhost;Database=Curso;User=sa;Password=<oficoidelio@gmail.com>");
-            ApplicationDbContext context = new ApplicationDbContext(options);
-
-            var pendingMigrations = context.Database.GetPendingMigrations();
-
-            if (pendingMigrations.Count() > 0) {
-
-                context.Database.Migrate();
-            }
 
             var user = new User()
             {
@@ -99,8 +95,9 @@ namespace product_categoryApi.Controllers
                 Password=registerVMInput.Password
             };
 
-            context.Users.Add(user);
-            context.SaveChanges();
+            
+            _userRepository.Store(user);
+           
 
             return Created("",user);
         }

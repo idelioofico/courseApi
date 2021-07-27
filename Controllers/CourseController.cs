@@ -87,10 +87,6 @@ namespace product_categoryApi.Controllers
         [ModelStateValidationFilter]
         public async Task<IActionResult> Post(Course course) {
 
-            var options = new DbContextOptionsBuilder<ApplicationDbContext>();
-            options.UseSqlServer("Server=localhost;Database=Curso;User=sa;Password=<oficoidelio@gmail.com>");
-            
-            ApplicationDbContext context = new ApplicationDbContext(options);
             
             return Created("", course);
         }
