@@ -10,7 +10,7 @@
             </summary>
             <returns>Returns status code of 200 and Courses list</returns>
         </member>
-        <member name="M:product_categoryApi.Controllers.CourseController.Post(product_categoryApi.Models.Course)">
+        <member name="M:product_categoryApi.Controllers.CourseController.Post(product_categoryApi.Models.CourseVMInput)">
             <summary>
             This service creates a new Course
             </summary>
