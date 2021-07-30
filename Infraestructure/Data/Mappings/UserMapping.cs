@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using product_categoryApi.Business.Entities;
+using courseApi.Business.Entities;
 
-namespace product_categoryApi.Infraestructure.Data.Mappings
+namespace courseApi.Infraestructure.Data.Mappings
 {
     public class UserMapping : IEntityTypeConfiguration<User>
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using product_categoryApi.Business.Entities;
-using product_categoryApi.Business.Repositories;
-using product_categoryApi.Infraestructure.Data;
-using product_categoryApi.Models.VM;
-using product_categoryApi.Models.VM.User;
+using courseApi.Business.Entities;
+using courseApi.Business.Repositories;
+using courseApi.Infraestructure.Data;
+using courseApi.Models.VM;
+using courseApi.Models.VM.User;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -12,7 +12,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace product_categoryApi.Infraestructure.Repositories
+namespace courseApi.Infraestructure.Repositories
 {
     public class UserRepository : IUserRepository
     {

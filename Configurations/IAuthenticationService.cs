@@ -1,10 +1,10 @@
-﻿using product_categoryApi.Models.VM.User;
+﻿using courseApi.Models.VM.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace product_categoryApi.Configurations
+namespace courseApi.Configurations
 {
     public interface IAuthenticationService
     {

@@ -1,28 +1,22 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using product_categoryApi.Business.Repositories;
-using product_categoryApi.Configurations;
-using product_categoryApi.Infraestructure.Data;
-using product_categoryApi.Infraestructure.Repositories;
+using courseApi.Business.Repositories;
+using courseApi.Configurations;
+using courseApi.Infraestructure.Data;
+using courseApi.Infraestructure.Repositories;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace product_categoryApi
+namespace courseApi
 {
     public class Startup
     {
@@ -80,6 +74,7 @@ namespace product_categoryApi
                     Scheme = "Bearer"
 
                 });
+
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
@@ -93,7 +88,7 @@ namespace product_categoryApi
                         Array.Empty<string>()
                     }
                 });
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "product_categoryApi", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Course API",Description="Api for register user courses", Version = "v1" });
                 string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
@@ -124,7 +119,7 @@ namespace product_categoryApi
 
             app.UseSwagger();
             app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Product Manager API - v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Course Manager API - v1");
                 c.RoutePrefix = String.Empty;//Swagger
             });
 

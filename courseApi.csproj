@@ -3,10 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <UserSecretsId>92ac1163-b57a-47d6-b39e-b0f9e82e5deb</UserSecretsId>
+    <RootNamespace>courseApi</RootNamespace>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>product_categoryApi.xml</DocumentationFile>
+    <DocumentationFile>courseApi.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

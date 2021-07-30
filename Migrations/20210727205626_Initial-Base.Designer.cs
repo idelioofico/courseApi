@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using product_categoryApi.Infraestructure.Data;
+using courseApi.Infraestructure.Data;
 
-namespace product_categoryApi.Migrations
+namespace courseApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20210727205626_Initial-Base")]

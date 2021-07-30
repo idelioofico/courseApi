@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace product_categoryApi.Models.VM
+namespace courseApi.Models.VM
 {
     public class RegisterVMInput
     {

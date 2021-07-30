@@ -1,10 +1,10 @@
-﻿using product_categoryApi.Business.Entities;
+﻿using courseApi.Business.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace product_categoryApi.Business.Repositories
+namespace courseApi.Business.Repositories
 {
    public interface ICourseRepository
     {

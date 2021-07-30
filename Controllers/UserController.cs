@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using product_categoryApi.Filter;
-using product_categoryApi.Models;
-using product_categoryApi.Models.VM;
+using courseApi.Filter;
+using courseApi.Models;
+using courseApi.Models.VM;
 using Swashbuckle.AspNetCore.Annotations;
-using product_categoryApi.Models.VM.User;
-using product_categoryApi.Business.Entities;
-using product_categoryApi.Business.Repositories;
-using product_categoryApi.Configurations;
+using courseApi.Models.VM.User;
+using courseApi.Business.Entities;
+using courseApi.Business.Repositories;
+using courseApi.Configurations;
 
-namespace product_categoryApi.Controllers
+namespace courseApi.Controllers
 {
     [Route("api/v1/user")]
     [ApiController]

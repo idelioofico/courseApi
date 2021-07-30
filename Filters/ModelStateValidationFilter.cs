@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using product_categoryApi.Models;
+using courseApi.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace product_categoryApi.Filter
+namespace courseApi.Filter
 {
     public class ModelStateValidationFilter:ActionFilterAttribute
     {

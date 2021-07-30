@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using product_categoryApi.Business.Entities;
-using product_categoryApi.Business.Repositories;
-using product_categoryApi.Infraestructure.Data;
+using courseApi.Business.Entities;
+using courseApi.Business.Repositories;
+using courseApi.Infraestructure.Data;
 using System.Collections.Generic;
 using System.Linq;
 
 
-namespace product_categoryApi.Infraestructure.Repositories
+namespace courseApi.Infraestructure.Repositories
 {
     public class CourseRepository: ICourseRepository
     {

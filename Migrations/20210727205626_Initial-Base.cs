@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace product_categoryApi.Migrations
+namespace courseApi.Migrations
 {
     public partial class InitialBase : Migration
     {

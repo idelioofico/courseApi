@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace product_categoryApi.Business.Entities
+namespace courseApi.Business.Entities
 {
     public class User
     {

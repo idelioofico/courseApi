@@ -1,13 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using product_categoryApi.Business.Entities;
-using product_categoryApi.Configurations;
-using product_categoryApi.Infraestructure.Data.Mappings;
+using courseApi.Business.Entities;
+using courseApi.Configurations;
+using courseApi.Infraestructure.Data.Mappings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace product_categoryApi.Infraestructure.Data
+namespace courseApi.Infraestructure.Data
 {
     public class ApplicationDbContext:DbContext
     {
