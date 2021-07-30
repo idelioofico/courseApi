@@ -18,4 +18,4 @@ Made with ASP.NET 5.0 + SQL Server and documented with [Swagger](https://swagger
 
 
 
-​    ![course_manager_api_](C:\Users\Idélio Ofiço\OneDrive\Pictures\course_manager_api_.png)
+​    ![course_manager_api_](./course_manager_api_.png)
